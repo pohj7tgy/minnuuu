@@ -32,3 +32,54 @@ setInterval(() => {
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add("active");
 }, 3000);
+/* 🎶 MUSIC REACTIVE GLOW */
+const audio = document.getElementById("music");
+const glows = document.querySelectorAll(".glow");
+
+let audioCtx, analyser, source, dataArray;
+
+function initAudio() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  analyser = audioCtx.createAnalyser();
+  source = audioCtx.createMediaElementSource(audio);
+
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
+
+  analyser.fftSize = 256;
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+  animateGlow();
+}
+
+/* Animate glow with music */
+function animateGlow() {
+  analyser.getByteFrequencyData(dataArray);
+
+  let avg =
+    dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
+
+  let scale = 1 + avg / 250;
+  let opacity = Math.min(1, avg / 180 + 0.3);
+
+  glows.forEach(glow => {
+    glow.style.transform = `scale(${scale})`;
+    glow.style.opacity = opacity;
+  });
+
+  requestAnimationFrame(animateGlow);
+}
+
+/* 🌈 GRADIENT COLOR SHIFT */
+let hue = 330;
+setInterval(() => {
+  hue = (hue + 1) % 360;
+  glows.forEach(glow => {
+    glow.style.setProperty("--hue", hue);
+  });
+}, 100);
+
+/* Start audio context on user interaction (mobile fix) */
+document.body.addEventListener("click", () => {
+  if (!audioCtx) initAudio();
+}, { once: true });

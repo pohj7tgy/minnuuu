@@ -1,3 +1,4 @@
+/* 🌌 BODY – DARK ROMANTIC THEME */
 body {
   background: radial-gradient(circle at top, #1a001f, #000);
   color: #fff;
@@ -7,19 +8,23 @@ body {
   overflow-x: hidden;
 }
 
+/* 💖 HEADINGS */
 h1 {
   color: #ff4da6;
-  text-shadow: 0 0 15px #ff4da6;
+  text-shadow: 0 0 15px rgba(255, 77, 166, 0.9);
+  margin-bottom: 10px;
 }
 
+/* ✍️ MESSAGE TEXT */
 .msg {
   width: 85%;
   margin: 20px auto;
   font-size: 18px;
   line-height: 1.8;
+  text-shadow: 0 0 8px rgba(255, 100, 180, 0.6);
 }
 
-/* 3D Buttons */
+/* 🔘 3D BUTTONS */
 button {
   padding: 15px 36px;
   font-size: 18px;
@@ -28,45 +33,57 @@ button {
   cursor: pointer;
   font-family: 'Special Elite', cursive;
   margin: 15px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* 💕 YES BUTTON */
 #yes {
   background: linear-gradient(145deg, #ff5fa2, #ff2f7d);
   color: white;
-  box-shadow: 0 8px 0 #b91c5c;
+  box-shadow: 0 8px 0 #b91c5c, 0 12px 25px rgba(255, 77, 166, 0.6);
 }
 
+/* ❌ NO BUTTON */
 #no {
-  background: #333;
+  background: linear-gradient(145deg, #444, #222);
   color: white;
   position: absolute;
+  box-shadow: 0 8px 0 #111;
 }
 
+/* 👆 PRESS EFFECT */
 button:active {
   transform: translateY(6px);
   box-shadow: none;
 }
 
-/* Slideshow */
+/* 📸 SLIDESHOW – FIXED (NO WHITE HALF) */
 .slideshow {
   width: 280px;
-  height: 280px;
+  height: 360px;              /* IMPORTANT FIX */
   margin: 30px auto;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 77, 166, 0.6);
   position: relative;
+  background: black;          /* removes white area */
+  box-shadow: 0 0 30px rgba(255, 77, 166, 0.6);
 }
 
+/* 🖼️ SLIDES */
 .slide {
   position: absolute;
+  inset: 0;                   /* full cover */
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;          /* KEY FIX */
+  object-position: center;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease;
+  transform: scale(1.05);
 }
 
+/* 🌸 ACTIVE SLIDE */
 .slide.active {
   opacity: 1;
+  transform: scale(1);
 }

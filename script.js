@@ -32,6 +32,8 @@ setInterval(() => {
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add("active");
 }, 3000);
+
+
 /* 🎶 MUSIC REACTIVE GLOW */
 const audio = document.getElementById("music");
 const glows = document.querySelectorAll(".glow");

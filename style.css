@@ -236,3 +236,17 @@ button:active {
   position: relative;
   z-index: 10;
 }
+
+/* 🌈 GRADIENT COLOR SHIFT */
+.glow {
+  background: radial-gradient(circle,
+    hsl(var(--hue), 100%, 70%),
+    hsl(var(--hue), 100%, 40%),
+    transparent);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* Initial hue value */
+.glow {
+  --hue: 330; /* pink */
+}
